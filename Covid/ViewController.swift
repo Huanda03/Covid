@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
+    
+    let CovidManager = covidManager()
 
     @IBOutlet weak var buscarTextField: UITextField!
     @IBOutlet weak var muertesLabel: UILabel!
@@ -21,7 +23,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(buscarTextField.text!)
+        CovidManager.fetchCovid(nombreCiudad: buscarTextField.text!)
         return true
     }
     
@@ -37,6 +39,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
 
     @IBAction func buscarButton(_ sender: UIButton) {
+        CovidManager.fetchCovid(nombreCiudad: buscarTextField.text!)
     }
 }
 
