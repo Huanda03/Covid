@@ -8,9 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, covidManagerDelegate {
+    func actualizarDatos(covid: CovidModelo) {
+        DispatchQueue.main.async {
+            self.muertesLabel.text = String(covid.muertes)
+            self.totalesLabel.text = String(covid.totales)
+            self.recuperadosLabel.text = String(covid.recuperados)
+        }
+    }
     
-    let CovidManager = covidManager()
+    
+    var CovidManager = covidManager()
 
     @IBOutlet weak var buscarTextField: UITextField!
     @IBOutlet weak var muertesLabel: UILabel!
@@ -19,6 +27,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var flagImageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        CovidManager.delegado = self
         buscarTextField.delegate = self
     }
     

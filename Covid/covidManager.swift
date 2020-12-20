@@ -8,7 +8,14 @@
 
 import Foundation
 
+protocol covidManagerDelegate {
+    func actualizarDatos(covid : CovidModelo)
+}
+
 struct covidManager {
+    
+    var delegado : covidManagerDelegate?
+    
     let covidURL = "https://corona.lmao.ninja/v3/covid-19/countries/"
     
     func fetchCovid (nombreCiudad: String) {
@@ -25,7 +32,9 @@ struct covidManager {
                     return
                 }
                 if let datosSeguros = data{
-                    self.parseJSON(covidData: datosSeguros)
+                    if let covid = self.parseJSON(covidData: datosSeguros){
+                        self.delegado?.actualizarDatos(covid: covid)
+                    }
                 }
             }
             tarea.resume()
@@ -33,13 +42,19 @@ struct covidManager {
 
     }
     
-    func parseJSON (covidData : Data){
+    func parseJSON (covidData : Data) -> CovidModelo?{
         let decoder = JSONDecoder()
         do{
             let dataDecodificada = try decoder.decode(CovidData.self, from: covidData)
-            print(dataDecodificada.cases)
+            let totales = dataDecodificada.cases
+            let muertes = dataDecodificada.deaths
+            let recuperados = dataDecodificada.recovered
+            let bandera = dataDecodificada.countryInfo.flag
+            let objCovid = CovidModelo(totales: totales, muertes: muertes, recuperados: recuperados, bandera: bandera)
+            return objCovid
         }catch{
             print(error)
+            return nil
         }
     }
     
