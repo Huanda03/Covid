@@ -14,6 +14,12 @@ class ViewController: UIViewController, UITextFieldDelegate, covidManagerDelegat
             self.muertesLabel.text = String(covid.muertes)
             self.totalesLabel.text = String(covid.totales)
             self.recuperadosLabel.text = String(covid.recuperados)
+            let url = NSURL(string:covid.bandera)
+            let data = NSData(contentsOf: url as! URL)
+            if data != nil {
+                self.flagImageView.image = UIImage(data:data as! Data)
+            }
+            
         }
     }
     

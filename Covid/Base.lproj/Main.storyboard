@@ -79,7 +79,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mexico" translatesAutoresizingMaskIntoConstraints="NO" id="pkD-hD-Z2B">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pkD-hD-Z2B">
                                 <rect key="frame" x="87" y="600" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -102,6 +102,5 @@
     </scenes>
     <resources>
         <image name="Fondo" width="240" height="426"/>
-        <image name="mexico" width="400" height="200"/>
     </resources>
 </document>
